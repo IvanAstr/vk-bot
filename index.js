@@ -1,10 +1,13 @@
 const { API, VK, Keyboard, MessageContext, Upload } = require('vk-io');
 const { HearManager } = require('@vk-io/hear');
 const { QuestionManager } = require('vk-io-question');
+const fs = require('fs');
 
 //------------------------------------==
 // ### KeyBoards ### 
 //------------------------------------==
+
+
 
 const { comisionJS } = require('./startingPoints/comission');
 const { conditionsJS } = require('./startingPoints/condition');
@@ -21,9 +24,16 @@ const { conditionComands } = require('./comands/conditions.js');
 const { trialsComands } = require('./comands/trials.js');
 const { priceComands } = require("./comands/prices.js");
 
-
 const vk = new VK({
-    token: "vk1.a.By-kWeo136J9BVT6FTT6g9WVj7rbAZ3F9tk70leYceN8658PSKGprerCLB96N_Lmt4JxZzWzLIYTrh0gzBLQnMJeVYgFCW3so-DNMyl2Q5gpPnpO1gSq1120L64u0g1hp8sAHlvED9TOs50EpZCgfGwAIO6jq7J3ECeFIKhByQCOALEix9Gq4BL1SzhiDEXdKmAJw0iXklzNHBmICMMs_Q"
+    token: "vk1.a.z1VHCkeqKg82PP3sPT1lLu285ynu2voxnoxfdhq7VTh3K2FFovkUHvg25pk1-fGt263s5rnnLYnT3Zc3qfFXqHqPhMlBqu_WZjkOyw-OgWCK8TwyP0oE3KVZUNDNq6kCZ16QDgTlwNUtuhp_Y5t8Di6xmeBNnmtw3-FeJMhGmYIK0m3bbNWgsge6YesgFtjWIsgIal57tpgb1YMovOUcHw"
+});
+
+const api = new API({
+    token: "vk1.a.z1VHCkeqKg82PP3sPT1lLu285ynu2voxnoxfdhq7VTh3K2FFovkUHvg25pk1-fGt263s5rnnLYnT3Zc3qfFXqHqPhMlBqu_WZjkOyw-OgWCK8TwyP0oE3KVZUNDNq6kCZ16QDgTlwNUtuhp_Y5t8Di6xmeBNnmtw3-FeJMhGmYIK0m3bbNWgsge6YesgFtjWIsgIal57tpgb1YMovOUcHw"
+});
+
+const upload = new Upload({
+	api
 });
 
 //-------------------------------------==
@@ -81,8 +91,9 @@ vk.updates.on('message', async (context, next) => {
     // *** Чтобы группа не отвечала на свои же сообщения ***
     if (context.isOutbox == true) return
     console.log(context.text.toLowerCase());
-
+    
     if (context.text.toLowerCase().includes(start)) {
+
         await context.send({
             message: ('Добро пожаловать в бота группы!\nНажмите на кнопку что бы перейти меню для просмотра основных разделов!'),
             keyboard: Keyboard.builder().textButton({
@@ -90,8 +101,8 @@ vk.updates.on('message', async (context, next) => {
                 payload: {
                     command: 'меню'
                 },
-                color: 'negative'
-            }).inline()
+                color: 'positive'
+            })
         });
     }
 
@@ -145,9 +156,9 @@ vk.updates.on('message', async (context, next) => {
 
     //* Обработчики KeyBoard приемной комиссии *//
 
-    else if (context.messagePayload.command.toLowerCase().includes(scheduleRobots)) {
+     else if (context.messagePayload.command.toLowerCase().includes(scheduleRobots)) {
         await comissionComands(context)
-    }
+     }
 
     else if (context.messagePayload.command.toLowerCase().includes(theCompositionOfTheAdmissionsCommittee)) {
         await comissionComands(context)
@@ -241,18 +252,15 @@ vk.updates.on('message', async (context, next) => {
     else if (context.messagePayload.command.toLowerCase().includes(fullTimeEducation)){
         await priceComands(context)
     }
-    //* Обработчики KeyBoard fullTimeEducation вступительных испытаний *//
-    
+    //* Обработчики KeyBoard fullTimeEducation очное обучение *//
+
     else if (context.messagePayload.command.toLowerCase().includes(BaseOf9Classes)){
+        let answer =  fs.readFileSync('text/CostOfServices/Full-timeEducation/base-9.txt', 'utf8', (err, data) => {
+            return answer = data
+        });
+
         return await context.send({
-            message:('За первый год обучения на базе 9 классов (очная форма обучения) по специальностям:\n\n'+
-            "«Правоохранительная деятельность» - 57900 рублей\n"+
-            "«Информационные системы и программирование» - 56400 рублей\n"+
-            "«Адаптивная физическая культура» - 57000 рублей\n"+
-            "«Коррекционная педагогика в начальном образовании - 56400 рублей\n"+
-            "«Дошкольное образование» -54000 рублей\n\n"+
-            "Более подробнее о стоимости платных образовательных услуг вы можете узнать на сайте колледжа"
-            ),
+            message: `${answer}`,
             keyboard: Keyboard.builder().inline().urlButton({
                 label: 'Официальный сайт',
                 url: 'https://bgpk.edu22.info/абитуриенту/стоимость-платных-образовательных-услуг',
@@ -266,15 +274,15 @@ vk.updates.on('message', async (context, next) => {
         }) 
     }
 
+    
+
     else if (context.messagePayload.command.toLowerCase().includes(BaseOf11Classes)){
+        let answer =  fs.readFileSync('text/CostOfServices/Full-timeEducation/base-11.txt', 'utf8', (err, data) => {
+            return answer = data
+        });
+
         return await context.send({
-            message:('За первый год обучения на базе 11 классов (очная форма обучения) по специальностям:\n\n'+
-            "«Правоохранительная деятельность» - 57900 рублей\n"+
-            "«Преподавание в начальных классах» - 57900 рублей\n"+
-            "«Адаптивная физическая культура» - 57000 рублейn\n"+
-            "«Дошкольное образование» - 54000 рублей\n\n"+
-            "Более подробнее о стоимости платных образовательных услуг вы можете узнать на сайте колледжа"
-            ),
+            message:`${answer}`,
             keyboard: Keyboard.builder().inline().urlButton({
                 label: 'Официальный сайт',
                 url: 'https://bgpk.edu22.info/абитуриенту/стоимость-платных-образовательных-услуг',

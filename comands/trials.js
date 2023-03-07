@@ -1,4 +1,13 @@
-const { API, VK, Keyboard } = require('vk-io');
+const { API, VK, Keyboard, Upload } = require('vk-io');
+const fs = require('fs');
+const api = new API({
+    token: "vk1.a.z1VHCkeqKg82PP3sPT1lLu285ynu2voxnoxfdhq7VTh3K2FFovkUHvg25pk1-fGt263s5rnnLYnT3Zc3qfFXqHqPhMlBqu_WZjkOyw-OgWCK8TwyP0oE3KVZUNDNq6kCZ16QDgTlwNUtuhp_Y5t8Di6xmeBNnmtw3-FeJMhGmYIK0m3bbNWgsge6YesgFtjWIsgIal57tpgb1YMovOUcHw"
+});
+
+const upload = new Upload({
+	api
+});
+
 
 const legalProtectionActivities = 'правохранительная деятельность',
     physicalCulture = 'физическая культура',
@@ -8,19 +17,12 @@ const legalProtectionActivities = 'правохранительная деяте
 
 const trialsComands = async (context)=>{
     if (context.messagePayload.command.toLowerCase().includes(legalProtectionActivities)) {
+        let answer =  fs.readFileSync('text/Introductory/fineArtAndDrawing.txt', 'utf8', (err, data) => {
+            return answer = data
+        });
+
         return await context.send({
-            message: ('Данная программа предназначена для поступающих в КГБПОУ «Барнаульский'+
-            "государственный педагогический колледж» для обучения по специальности"+
-            "«Правоохранительная деятельность» на базе основного общего и среднего общего образования."+
-            "Программа призвана ознакомить поступающих с требованиями, структурой и"+
-            "компонентами вступительных испытаний, дать рекомендации по их выполнению.\n\n"+
-
-            "Цель вступительного испытания, это "+
-            "определить наличие профессионально-значимых личностных качеств абитуриентов,"+
-            "необходимых для овладения специальностью и дальнейшего трудоустройства.\n\n"+
-
-            'Более подробно о вступительном испытании нужной специальности, вы можете узнать на официальном сайте'+
-            ' в разделе Абитуриенту -> вступительные испытания '),
+            message: `${answer}`,
 
             keyboard: Keyboard.builder().inline().urlButton({
                 label: 'Официальный сайт',
@@ -36,19 +38,11 @@ const trialsComands = async (context)=>{
     }
 
     else if (context.messagePayload.command.toLowerCase().includes(physicalCulture)) {
+        let answer =  fs.readFileSync('text/Introductory/physicalCulture.txt', 'utf8', (err, data) => {
+            return answer = data
+        });
         return await context.send({
-            message: ('Данная программа предназначена для поступающих в КГБПОУ «Барнаульский'+
-            "государственный педагогический колледж» для обучения по специальностям"+
-            "«Адаптивная физическая культура» (очной формы обучения) и <<Физическая культура>> (заочной формы обучения)  на базе основного общего и среднего общего образования."+
-            "Программа призвана ознакомить поступающих с требованиями, структурой и"+
-            "компонентами вступительных испытаний, дать рекомендации по их выполнению.\n\n"+
-
-            "Цель вступительного испытания, это "+
-            "определить наличие профессионально-значимых личностных качеств абитуриентов,"+
-            "необходимых для овладения специальностью и дальнейшего трудоустройства.\n\n"+
-
-            'Более подробно о вступительном испытании нужной специальности, вы можете узнать на официальном сайте'+
-            ' в разделе Абитуриенту -> вступительные испытания '),
+            message: `${answer}`,
 
             keyboard: Keyboard.builder().inline().urlButton({
                 label: 'Официальный сайт',
@@ -64,19 +58,12 @@ const trialsComands = async (context)=>{
     }
 
     else if (context.messagePayload.command.toLowerCase().includes(adaptivePhysicalCulture)) {
+        let answer =  fs.readFileSync('text/Introductory/adaptivePhysicalCulture.txt', 'utf8', (err, data) => {
+            return answer = data
+        });
+
         return await context.send({
-            message: ('Данная программа предназначена для поступающих в КГБПОУ «Барнаульский'+
-            "государственный педагогический колледж» для обучения по специальностям"+
-            "«Адаптивная физическая культура» (очной формы обучения) и <<Физическая культура>> (заочной формы обучения)  на базе основного общего и среднего общего образования."+
-            "Программа призвана ознакомить поступающих с требованиями, структурой и"+
-            "компонентами вступительных испытаний, дать рекомендации по их выполнению.\n\n"+
-
-            "Цель вступительного испытания, это "+
-            "определить наличие профессионально-значимых личностных качеств абитуриентов,"+
-            "необходимых для овладения специальностью и дальнейшего трудоустройства.\n\n"+
-
-            'Более подробно о вступительном испытании нужной специальности, вы можете узнать на официальном сайте'+
-            ' в разделе Абитуриенту -> вступительные испытания '),
+            message: `${answer}`,
 
             keyboard: Keyboard.builder().inline().urlButton({
                 label: 'Официальный сайт',
@@ -92,19 +79,12 @@ const trialsComands = async (context)=>{
     }
 
     else if (context.messagePayload.command.toLowerCase().includes(musicEducation)) {
+        let answer =  fs.readFileSync('text/Introductory/musicEducation.txt', 'utf8', (err, data) => {
+            return answer = data
+        });
+
         return await context.send({
-            message: ('Данная программа предназначена для поступающих в КГБПОУ «Барнаульский'+
-            "государственный педагогический колледж» для обучения по специальностям"+
-            "«Музыкальное образование»» на базе основного общего образования."+
-            "Программа призвана ознакомить поступающих с требованиями, структурой и"+
-            "компонентами вступительных испытаний, дать рекомендации по их выполнению.\n\n"+
-
-            "Цель вступительного испытания, это "+
-            "определить наличие профессионально-значимых личностных качеств абитуриентов,"+
-            "необходимых для овладения специальностью и дальнейшего трудоустройства.\n\n"+
-
-            'Более подробно о вступительном испытании нужной специальности, вы можете узнать на официальном сайте'+
-            ' в разделе Абитуриенту -> вступительные испытания '),
+            message: `${answer}`,
 
             keyboard: Keyboard.builder().inline().urlButton({
                 label: 'Официальный сайт',
@@ -120,20 +100,19 @@ const trialsComands = async (context)=>{
     }
 
     else if (context.messagePayload.command.toLowerCase().includes(fineArtAndDrawing)) {
+        let answer =  fs.readFileSync('text/Introductory/fineArtAndDrawing.txt', 'utf8', (err, data) => {
+            return answer = data
+        });
+
+        const attachment = await upload.messagePhoto({
+            source: {
+                value: "img/example-still-life.png"
+            }
+        });
+
         return await context.send({
-            message: ('Данная программа предназначена для поступающих в КГБПОУ «Барнаульский'+
-            "государственный педагогический колледж» для обучения по специальностям"+
-            "«Изобразительное искусство и черчение»»» на базе основного общего образования."+
-            "Программа призвана ознакомить поступающих с требованиями, структурой и"+
-            "компонентами вступительных испытаний, дать рекомендации по их выполнению.\n\n"+
-
-            "Цель вступительного испытания, это "+
-            "определить наличие профессионально-значимых личностных качеств абитуриентов,"+
-            "необходимых для овладения специальностью и дальнейшего трудоустройства.\n\n"+
-
-            'Более подробно о вступительном испытании нужной специальности, вы можете узнать на официальном сайте'+
-            ' в разделе Абитуриенту -> вступительные испытания '),
-
+            message: `${answer}`,
+            attachment,
             keyboard: Keyboard.builder().inline().urlButton({
                 label: 'Официальный сайт',
                 url: 'https://bgpk.edu22.info/абитуриенту/вступительные-испытания',
@@ -143,8 +122,12 @@ const trialsComands = async (context)=>{
                     command: 'вступительные испытания'
                 },
                 color: 'negative'
-            })
+            }),
+
         })
+
+
+        
     }
 
 }

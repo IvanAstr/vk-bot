@@ -1,4 +1,5 @@
 const { API, VK, Keyboard } = require('vk-io');
+const fs = require('fs');
 
 const scheduleRobots = 'график работы',
     theCompositionOfTheAdmissionsCommittee = 'состав приемной комиссии',
@@ -7,9 +8,12 @@ const scheduleRobots = 'график работы',
 const comissionComands = async (context) => {
     //вторичные ответы с приемная комиссия -> график работы
         if (context.messagePayload.command.toLowerCase().includes(scheduleRobots)) {
+            let answer =  fs.readFileSync('text/AdmCommittee/scheduleRobots.txt', 'utf8', (err, data) => {
+                return answer = data
+            });
+            
             return await context.send({
-                message: (context.messagePayload.item),
-
+                message: `${answer}`,
                 keyboard: Keyboard.builder().inline().textButton({
                     label: 'Назад',
                     payload: {
@@ -22,9 +26,11 @@ const comissionComands = async (context) => {
 
         // вторичные ответы с приемная комиссия -> состав приемной комиссии
         else if (context.messagePayload.command.toLowerCase().includes(theCompositionOfTheAdmissionsCommittee)) {
+            let answer =  fs.readFileSync('text/AdmCommittee/commissionStructure.txt', 'utf8', (err, data) => {
+                return answer = data
+            });
             return await context.send({
-                message: ('Cостав приемной комиссии\n\nПредседатель: \nСамолетов Михаил Борисович.\n\nЗаместители председателя: \nИванова Любовь Васильевна.\nЗемлякова Галина Петровна.\nРубаненко Серафима Александровна.\nКолпащикова Елена Михайловна.\nСеменихина Маргарита Леонидовна.\nПоротникова Елена Валерьевна.\n\nОтветственный секретарь: \nЛукьянова Наталия Владимировна.'),
-
+                message: `${answer}`,
                 keyboard: Keyboard.builder().inline().textButton({
                     label: 'Назад',
                     payload: {
@@ -36,8 +42,11 @@ const comissionComands = async (context) => {
         }
         //вторичные ответы с приемная комиссия -> контактные данные
         else if (context.messagePayload.command.toLowerCase().includes(contactDetails)) {
+            let answer =  fs.readFileSync('text/AdmCommittee/contactDetails.txt', 'utf8', (err, data) => {
+                return answer = data
+            });
             return await context.send({
-                message: ('Контактная информация:\n\n656010, Алтайский край, г. Барнаул\nУлица 80й гвардейской дивизии, 41, музыкальный корпус, кабинет №9 \n\nТелефоны приемной комиссии: 35-77-38 (работает только летом), 8-963-571-6914 \n\nEmail: prcom@bgpk.info'),
+                message: `${answer}`,
 
                 keyboard: Keyboard.builder().inline().textButton({
                     label: 'Назад',

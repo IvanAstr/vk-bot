@@ -1,4 +1,5 @@
 const { API, VK, Keyboard, Context } = require('vk-io');
+const fs = require('fs');
 
 const fullTimeEducation = 'очная форма обучения',
     correspondenceFormOfStudy = 'заочная форма обучения',
@@ -8,14 +9,12 @@ const fullTimeEducation = 'очная форма обучения',
 const priceComands = async (context) =>{
 
     if (context.messagePayload.command.toLowerCase().includes(correspondenceFormOfStudy)) {
+        let answer =  fs.readFileSync('text/CostOfServices/DistanceLearning/base-11.txt', 'utf8', (err, data) => {
+            return answer = data
+        });
         return await context.send({
-            message:('За первый год обучения на базе 11 классов (заочная форма обучения) по специальностям:\n\n'+
-            "«Правоохранительная деятельность» - 33000 рублей\n"+
-            "«Дошкольное образование» - 33900 рублей\n"+
-            "«Физическая культура» - 35100 рублей\n"+
-            "«Преподавание в начальных классах» - 35100 рублей\n\n"+
-            "Более подробнее о стоимости платных образовательных услуг вы можете узнать на сайте колледжа"
-            ),
+            message: `${answer}`,
+            
             keyboard: Keyboard.builder().inline().urlButton({
                 label: 'Официальный сайт',
                 url: 'https://bgpk.edu22.info/абитуриенту/стоимость-платных-образовательных-услуг',
