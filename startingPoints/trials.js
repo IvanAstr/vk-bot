@@ -9,31 +9,65 @@ const trialsJS = async (context) => {
                 command: 'правохранительная деятельность',
             },
             color: 'primary'
-        }).row().textButton({
+        })
+        .textButton({
+            label: 'Дошкольное образование',
+            payload:{
+                command:'дошкольное образование'
+            },
+            color:'primary'
+        })
+        .row().textButton({
+            label: 'Преподавание в начальных классах',
+            payload: {
+                command: 'Преподавание в начальных классах,',
+            },
+            color: 'primary'
+        })
+        .textButton({
+            label: 'Специальное дошкольное образование',
+            payload:{
+                command:'Специальное дошкольное образование'
+            },
+            color:'primary'
+        })
+        .row().textButton({
+            label: 'Коррекционная педагогика',
+            payload: {
+                command: 'Коррекционная педагогика в начальном образовании'
+            },
+            color: 'primary'
+        })
+        .textButton({
             label: 'Физическая культура',
+            payload:{
+                command:'Физическая культура'
+            },
+            color:'primary'
+        })
+        .row().textButton({
+            label: 'Адаптивная физическая культура',
             payload: {
-                command: 'физическая культура',
+                command: 'Адаптивная физическая культурае'
             },
             color: 'primary'
-        }).row().textButton({
-            label: 'Адаптивная физическая култура',
-            payload: {
-                command: 'адаптивная физическая култура'
-            },
-            color: 'primary'
-        }).row().textButton({
+        })
+        .textButton({
             label: 'Музыкальное образование',
-            payload: {
-                command: 'музыкальное образование'
+            payload:{
+                command:'Музыкальное образование'
             },
-            color: 'primary'
-        }).row().textButton({
+            color:'primary'
+        })
+        .row().textButton({
             label: 'Изобразительное искусство и черчение',
             payload: {
                 command: 'изобразительное искусство и черчение'
             },
             color: 'primary'
-        }).row().textButton({
+        })
+    
+        .row().textButton({
             label: 'Назад',
             payload: {
                 command: 'меню'
@@ -42,5 +76,6 @@ const trialsJS = async (context) => {
         })
     });
 }
+
 
 module.exports = { trialsJS }

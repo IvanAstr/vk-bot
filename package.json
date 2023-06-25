@@ -10,11 +10,16 @@
   "license": "ISC",
   "dependencies": {
     "@vk-io/hear": "^1.1.0",
+    "form-data": "^4.0.0",
+    "mailgun": "^0.5.0",
+    "mailgun.js": "^9.0.1",
+    "node-schedule": "^2.1.1",
     "node-vk-bot-api": "^3.5.0",
-    "nodemon": "^2.0.20",
+    "nodemailer": "^6.9.3",
+    "nodemon": "^2.0.22",
     "textract": "^2.5.0",
     "vk-bot-api": "^2.0.0",
-    "vk-io": "^4.7.0",
+    "vk-io": "^4.8.3",
     "vk-io-question": "^3.1.1"
   },
   "devDependencies": {

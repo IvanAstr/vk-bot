@@ -13,7 +13,13 @@ const legalProtectionActivities = 'правохранительная деяте
     physicalCulture = 'физическая культура',
     adaptivePhysicalCulture = "адаптивная физическая култура",
     musicEducation = 'музыкальное образование',
-    fineArtAndDrawing = 'изобразительное искусство и черчение'
+    fineArtAndDrawing = 'изобразительное искусство и черчение',
+    preschoolEducation ='дошкольное образование',
+    teachingInPrimarySchool = 'преподавание в начальных классах',
+    specialPreschoolEducation = 'специальное дошкольное образование',
+    correctionalPedagogy = 'коррекционная педагогика в начальном образовании'
+
+
 
 const trialsComands = async (context)=>{
     if (context.messagePayload.command.toLowerCase().includes(legalProtectionActivities)) {
@@ -80,6 +86,87 @@ const trialsComands = async (context)=>{
 
     else if (context.messagePayload.command.toLowerCase().includes(musicEducation)) {
         let answer =  fs.readFileSync('text/Introductory/musicEducation.txt', 'utf8', (err, data) => {
+            return answer = data
+        });
+
+        return await context.send({
+            message: `${answer}`,
+
+            keyboard: Keyboard.builder().inline().urlButton({
+                label: 'Официальный сайт',
+                url: 'https://bgpk.edu22.info/абитуриенту/вступительные-испытания',
+            }).row().textButton({
+                label: 'Назад',
+                payload: {
+                    command: 'вступительные испытания'
+                },
+                color: 'negative'
+            })
+        })
+    }
+    else if (context.messagePayload.command.toLowerCase().includes(preschoolEducation)) {
+        let answer =  fs.readFileSync('text/Introductory/preschoolEducation.txt', 'utf8', (err, data) => {
+            return answer = data
+        });
+
+        return await context.send({
+            message: `${answer}`,
+
+            keyboard: Keyboard.builder().inline().urlButton({
+                label: 'Официальный сайт',
+                url: 'https://bgpk.edu22.info/абитуриенту/вступительные-испытания',
+            }).row().textButton({
+                label: 'Назад',
+                payload: {
+                    command: 'вступительные испытания'
+                },
+                color: 'negative'
+            })
+        })
+    }
+    else if (context.messagePayload.command.toLowerCase().includes(teachingInPrimarySchool)) {
+        let answer =  fs.readFileSync('text/Introductory/teachingInPrimarySchool.txt', 'utf8', (err, data) => {
+            return answer = data
+        });
+
+        return await context.send({
+            message: `${answer}`,
+
+            keyboard: Keyboard.builder().inline().urlButton({
+                label: 'Официальный сайт',
+                url: 'https://bgpk.edu22.info/абитуриенту/вступительные-испытания',
+            }).row().textButton({
+                label: 'Назад',
+                payload: {
+                    command: 'вступительные испытания'
+                },
+                color: 'negative'
+            })
+        })
+    }
+
+    else if (context.messagePayload.command.toLowerCase().includes(specialPreschoolEducation)) {
+        let answer =  fs.readFileSync('text/Introductory/specialPreschoolEducation.txt', 'utf8', (err, data) => {
+            return answer = data
+        });
+
+        return await context.send({
+            message: `${answer}`,
+
+            keyboard: Keyboard.builder().inline().urlButton({
+                label: 'Официальный сайт',
+                url: 'https://bgpk.edu22.info/абитуриенту/вступительные-испытания',
+            }).row().textButton({
+                label: 'Назад',
+                payload: {
+                    command: 'вступительные испытания'
+                },
+                color: 'negative'
+            })
+        })
+    }
+    else if (context.messagePayload.command.toLowerCase().includes(correctionalPedagogy)) {
+        let answer =  fs.readFileSync('text/Introductory/correctionalPedagogy.txt', 'utf8', (err, data) => {
             return answer = data
         });
 
